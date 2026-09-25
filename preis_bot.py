@@ -1,4 +1,20 @@
 import streamlit as st
+import streamlit as st
+from datetime import datetime
+
+# Cache nur für 5 Minuten (statt 1 Stunde)
+@st.cache_data(ttl=300)
+def scrape_data(query):
+    # ... dein Scraping-Code ...
+    pass
+
+# Manueller Refresh-Button
+if st.button("🔄 Daten jetzt aktualisieren"):
+    st.cache_data.clear()  # Löscht den Cache
+    st.rerun()
+
+# Zeige aktuellen Timestamp
+st.caption(f"⏰ Zuletzt geupdatet: {datetime.now().strftime('%H:%M:%S')}")
 import requests
 from bs4 import BeautifulSoup
 import re
